@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Curso Javascript Completo 2020</title>
+        <meta charset="utf-8">
+
+    </head>
+    <body>
+        <div class="container">
+            <h1>Curso de Javascript</h1>
+
+            <form action="#" >
+                <label for="txtUser">Usuario</label><input type="text" id="txtUser" name="user">
+                <br>
+                <label for="txtPass">Senha</label><input type="password" id="txtPass" name="password">
+                <br>
+                <button type="button" id="button">Logar</button>
+            </form>
+            
+        </div>
+
+        <script>
+            (function(){
+                'use strict';
+                var $txtUser = document.getElementById('txtUser');
+                var $txtPass = document.getElementById('txtPass');
+                var $button = document.getElementById('button');
+
+                $button.addEventListener('click', function(){
+                    if(!$txtUser.value || !$txtPass.value){
+                        alert("preencha todos os campos");
+                    }
+                    console.log($txtUser);
+                });
+
+            })()
+        </script>
+    </body>
+
+</html>

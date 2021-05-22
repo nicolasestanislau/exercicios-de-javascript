@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Curso Javascript Completo 2021</title>
+    <meta charset="utf-8">
+    <script src="https://kit.fontawesome.com/030898659a.js" crossorigin="anonymous"></script>
+    <style>
+        input {
+            border-radius: 5px;
+        }
+        .done {
+            text-decoration: line-through;
+            color: #7D7E75;
+        }
+
+        ul {
+            width: fit-content;
+        }
+
+        li {
+            cursor: pointer;
+        }
+
+        .erro {
+            color: red;
+            height: 26px;
+        }
+
+        .erro-hidden {
+            display: none;
+            height: 26px;
+        }
+
+        .erro-input {
+            border: 2px solid #e74c3c;
+        }
+
+        .fa-exclamation-circle {
+            display: none;
+        }
+
+        .error {
+            color: #e74c3c;
+            display: inline;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Curso de Javascript</h1>
+        <h3 id="erro" class="erro-hidden">campo vazio!</h3>
+        <ul>
+            <li>estudar javascrip DOM</li>
+            <li>estudar Event em javascript</li>
+            <li>estudar css</li>
+        </ul>
+
+        <input type="text" id="txtTask">
+        <i  id="logo" class="fas fa-exclamation-circle"></i>
+        <br>
+        <button style="margin-top: 1rem;" id="btn">Cadastrar tarefa</button>
+
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            var $erro = document.querySelector('#erro');
+            var $logo = document.querySelector('#logo');
+            var $ul = document.querySelector('ul');
+            var $lis = $ul.querySelectorAll('li');
+            var $txtTask = document.querySelector('#txtTask');
+            var $btn = document.querySelector('#btn');
+            $btn.addEventListener('click', checkaddTask);
+            $txtTask.addEventListener('keyup', function (e) {
+                if (e.keyCode === 13) {
+                    if ($txtTask.value == null || $txtTask.value == "") {
+                        setErrorFor($erro, $txtTask, $logo, "campo vazio!");
+                        return false;
+                    } else {
+                        addTask();
+                        setDefaultFor($erro, $txtTask, $logo, "");
+                    }
+
+                }
+            });
+
+            for (var i = 0; i < $lis.length; i++) {
+                addEvent($lis[i]);
+            }
+
+            function toogleDone() {
+
+                this.classList.toggle('done');
+            }
+            function toogleErro() {
+
+                this.classList.toggle('erro');
+            }
+
+            function addTask() {
+                var li = document.createElement('li');
+                var text = document.createTextNode($txtTask.value)
+                li.appendChild(text);
+                $ul.appendChild(li);
+
+                $txtTask.value = '';
+                $txtTask.focus();
+
+                addEvent(li)
+
+            }
+
+            function addEvent(li) {
+
+                li.addEventListener('click', toogleDone);
+            }
+
+            function checkaddTask() {
+                if ($txtTask.value == null || $txtTask.value == "") {
+                    setErrorFor($erro, $txtTask, $logo, "campo vazio!");
+                    return false;
+                } else {
+                    addTask();
+                    setDefaultFor($erro, $txtTask, $logo, "");
+                }
+            }
+            function setErrorFor($erro, $txtTask, $logo, message) {
+
+                $erro.innerHTML = message;
+
+                $erro.classList.remove("erro-hidden");
+                $erro.classList.add("erro");
+                $txtTask.classList.add("erro-input");
+                $logo.classList.add("error");
+            }
+            function setDefaultFor($erro, $txtTask, $logo, message) {
+
+                $erro.innerHTML = message;
+
+                $erro.classList.remove("erro");
+                $erro.classList.add("erro-hidden");
+                $txtTask.classList.remove("erro-input");
+                $logo.classList.remove("error");
+            }
+        })()
+    </script>
+</body>
+
+</html>

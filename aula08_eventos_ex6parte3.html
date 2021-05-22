@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Curso Javascript Completo 2021</title>
+    <meta charset="utf-8">
+    <style>
+        .done {
+            text-decoration: line-through;
+            color: #7D7E75;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Curso de Javascript</h1>
+        <ul>
+            <li>estudar javascrip DOM</li>
+            <li>estudar Event em javascript</li>
+            <li>estudar css</li>
+        </ul>
+
+        <input type="text" id="txtTask">
+        <button id="btn">Cadastrar tarefa</button>
+
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            var $ul = document.querySelector('ul');
+            var $lis = $ul.querySelectorAll('li');
+            var $txtTask = document.querySelector('#txtTask');
+            var $btn = document.querySelector('#btn');
+            $btn.addEventListener('click', addTask);
+            $txtTask.addEventListener('keyup', function (e) {
+                if (e.keyCode === 13) {
+                    addTask();
+                }
+            });
+
+            for (var i = 0; i < $lis.length; i++) {
+                $lis[i].addEventListener('click', toogleDone);
+            }
+
+            function toogleDone() {
+                this.classList.toggle('done');
+            }
+
+            function addTask() {
+                var task = '<li>' + $txtTask.value + '</li>';
+                console.log(task);
+
+                $ul.innerHTML += task;
+                $txtTask.value = '';
+                $txtTask.focus();
+            }
+        })()
+    </script>
+</body>
+
+</html>

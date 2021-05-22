@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Curso Javascript Completo 2021</title>
+    <meta charset="utf-8">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Curso de Javascript</h1>
+        <form action="#">
+            <textarea cols="50" rows="10" readonly>
+                contrato de seviço
+            </textarea>
+            <br/>
+            <label>
+                <input type="checkbox" id="chk" checked> Li e aceito os termos desse contrato
+            </label>
+            <br/>
+            <input type="submit" value="Continuar" id="btn">
+        </form>
+
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+            var $btn = document.getElementById('btn');
+            var $chk = document.getElementById('chk');
+            toggleBtn();
+
+            $chk.addEventListener('change', function(){
+                toggleBtn();
+            });
+
+            function toggleBtn(){
+                $btn.disabled = !chk.checked;
+            }
+
+        })()
+    </script>
+</body>
+
+</html>
