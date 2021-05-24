@@ -9,6 +9,7 @@
         input {
             border-radius: 5px;
         }
+
         .done {
             text-decoration: line-through;
             color: #7D7E75;
@@ -59,7 +60,7 @@
         </ul>
 
         <input type="text" id="txtTask">
-        <i  id="logo" class="fas fa-exclamation-circle"></i>
+        <i id="logo" class="fas fa-exclamation-circle"></i>
         <br>
         <button style="margin-top: 1rem;" id="btn">Cadastrar tarefa</button>
 
@@ -89,13 +90,15 @@
                 }
             });
 
-            for (var i = 0; i < $lis.length; i++) {
-                addEvent($lis[i]);
-            }
+            $ul.addEventListener('click', function (e) {
+                if (e.target.nodeName === 'LI') {
+                    toggleDone(e.target);
+                }
+            })
 
-            function toggleDone() {
+            function toggleDone(li) {
 
-                this.classList.toggle('done');
+                li.classList.toggle('done');
             }
 
             function addTask() {
@@ -106,14 +109,6 @@
 
                 $txtTask.value = '';
                 $txtTask.focus();
-
-                addEvent(li);
-
-            }
-
-            function addEvent(li) {
-
-                li.addEventListener('click', toggleDone);
             }
 
             function checkaddTask() {
